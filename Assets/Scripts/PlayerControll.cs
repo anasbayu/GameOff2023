@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerControll : MonoBehaviour
 {
+    public Linker mLinker;
     int speed = 10;
     public int jumpPower;
     bool facingRight;           // direction indicator
@@ -19,7 +20,7 @@ public class PlayerControll : MonoBehaviour
     void Update(){
         if(Input.GetKey(KeyCode.D)){
             transform.Translate(Vector2.right * speed * Time.deltaTime);
-            
+            mLinker.mParallaxManager.ParallaxingForward(true);
             if(!facingRight){
                 Flip();
             }
@@ -27,6 +28,7 @@ public class PlayerControll : MonoBehaviour
 
         if(Input.GetKey(KeyCode.A)){
             transform.Translate(Vector2.left * speed * Time.deltaTime);
+            mLinker.mParallaxManager.ParallaxingForward(false);
 
             if(facingRight){
                 Flip();

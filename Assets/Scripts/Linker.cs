@@ -5,4 +5,5 @@ using UnityEngine;
 public class Linker : MonoBehaviour{
     public GameObject mPlayer;
     public GameObject mStatusBalloon;
+    public ParallaxManager mParallaxManager;
 }
