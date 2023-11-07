@@ -8,6 +8,7 @@ public class Linker : MonoBehaviour{
     public ParallaxManager mParallaxManager;
     public PlayerStatus mPlayerStatus;
     public PlayerSense mPlayerSense;
+    public PlayerControll mPlayerControll;
     public UIManager mUIManager;
     public Inventory mInventory;
 }

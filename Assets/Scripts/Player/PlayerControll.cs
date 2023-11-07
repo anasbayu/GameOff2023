@@ -10,11 +10,13 @@ public class PlayerControll : MonoBehaviour
     bool facingRight;           // direction indicator
     public bool isJumping;      // jumping indicator
     public bool onLand;         // Prevent jumping mid air.
+    public GameObject indicator;
 
     void Start(){
         onLand = true;
         facingRight = true;
         isJumping = false;
+        jumpPower = 23;
     }
 
     void Update(){
@@ -76,11 +78,23 @@ public class PlayerControll : MonoBehaviour
        Vector3 theScale = transform.localScale;
        theScale.x *= -1;
        transform.localScale = theScale;
-   }
+
+       Vector3 indicatorScale = indicator.transform.localScale;
+       indicatorScale.x *= -1;
+       indicator.transform.localScale = indicatorScale;
+    }
 
     void OnCollisionEnter2D(Collision2D other){
         if(other.gameObject.tag == "Land"){
             onLand = true;
+        }
+   }
+
+   public void SetJumpPower(string mode){
+        if(mode == "Kid"){
+            jumpPower = 23;
+        }else{
+            jumpPower = 30;
         }
    }
 }

@@ -8,6 +8,10 @@ public class UIManager : MonoBehaviour{
     public Image mUIPlayerStatus;
     public GameObject mUIKeyIndicator;
 
+    void Start(){
+        ChangeUIPlayerStatus(mLinker.mPlayerStatus.GetBodyState());
+    }
+
     public void ChangeUIPlayerStatus(bool isAdultState){
         if(isAdultState){
             mUIPlayerStatus.color = Color.red;

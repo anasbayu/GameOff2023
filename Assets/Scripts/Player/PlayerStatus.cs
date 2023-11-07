@@ -8,7 +8,7 @@ public class PlayerStatus : MonoBehaviour{
    Animator mAnimator;
 
    void Start(){
-        isAdultState = true;
+        isAdultState = false;
         mAnimator = GetComponent<Animator>();
         mAnimator.SetBool("IsAdultState", isAdultState);
    }
@@ -18,16 +18,24 @@ public class PlayerStatus : MonoBehaviour{
             if(isAdultState){
                 isAdultState = false;
                 mLinker.mUIManager.ChangeUIPlayerStatus(isAdultState);
-                mAnimator.SetBool("IsAdultState", isAdultState);
+                mLinker.mPlayer.transform.localScale /= 2;
+                mLinker.mPlayerControll.SetJumpPower("Kid");
+                // mAnimator.SetBool("IsAdultState", isAdultState);
                 Debug.Log("into a kid!");
             }else{
                 isAdultState = true;
                 mLinker.mUIManager.ChangeUIPlayerStatus(isAdultState);
-                mAnimator.SetBool("IsAdultState", isAdultState);
+                mLinker.mPlayer.transform.localScale *= 2;
+                mLinker.mPlayerControll.SetJumpPower("Adult");
+                // mAnimator.SetBool("IsAdultState", isAdultState);
                 Debug.Log("into an adult!");
             }
         }else{
             Debug.Log("transform environment!");
         }
+   }
+
+   public bool GetBodyState(){
+        return isAdultState;
    }
 }
