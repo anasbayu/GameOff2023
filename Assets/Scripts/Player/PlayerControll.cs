@@ -18,6 +18,7 @@ public class PlayerControll : MonoBehaviour
     }
 
     void Update(){
+        // Move right.
         if(Input.GetKey(KeyCode.D)){
             transform.Translate(Vector2.right * speed * Time.deltaTime);
             mLinker.mParallaxManager.ParallaxingForward(true);
@@ -26,6 +27,7 @@ public class PlayerControll : MonoBehaviour
             }
         }
 
+        // Move left.
         if(Input.GetKey(KeyCode.A)){
             transform.Translate(Vector2.left * speed * Time.deltaTime);
             mLinker.mParallaxManager.ParallaxingForward(false);
@@ -35,14 +37,26 @@ public class PlayerControll : MonoBehaviour
             }
         }
 
+        // Jump.
         if(Input.GetKeyDown(KeyCode.Space) && onLand){
             if(!isJumping){
                 isJumping = true;
             }
         }
 
-        if(Input.GetKey(KeyCode.S)){
-            // transform.Translate(Vector2.left * speed * time.deltaTime);
+        // Change self age.
+        if(Input.GetKeyDown(KeyCode.Q)){
+            mLinker.mPlayerStatus.Transform("self");
+        }
+
+        // Change environment age.
+        if(Input.GetKeyDown(KeyCode.E)){
+            mLinker.mPlayerStatus.Transform("environment");
+        }
+
+        // Interact action
+        if(Input.GetKeyDown(KeyCode.F) && mLinker.mPlayerSense.isInteracting){
+            mLinker.mPlayerSense.Interact();
         }
     }
 
