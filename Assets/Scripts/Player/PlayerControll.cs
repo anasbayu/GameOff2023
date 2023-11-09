@@ -11,19 +11,25 @@ public class PlayerControll : MonoBehaviour
     public bool isJumping;      // jumping indicator
     public bool onLand;         // Prevent jumping mid air.
     public GameObject indicator;
+    public Vector2 currPosition;
 
     void Start(){
         onLand = true;
         facingRight = true;
         isJumping = false;
         jumpPower = 23;
+        currPosition = transform.position;
     }
 
     void Update(){
         // Move right.
         if(Input.GetKey(KeyCode.D)){
             transform.Translate(Vector2.right * speed * Time.deltaTime);
-            mLinker.mParallaxManager.ParallaxingForward(true);
+
+            if(Mathf.RoundToInt(currPosition.x) != Mathf.RoundToInt(transform.position.x)){
+                currPosition = transform.position;
+                mLinker.mParallaxManager.ParallaxingForward(true);
+            }
             if(!facingRight){
                 Flip();
             }
@@ -32,7 +38,10 @@ public class PlayerControll : MonoBehaviour
         // Move left.
         if(Input.GetKey(KeyCode.A)){
             transform.Translate(Vector2.left * speed * Time.deltaTime);
-            mLinker.mParallaxManager.ParallaxingForward(false);
+            if(Mathf.RoundToInt(currPosition.x) != Mathf.RoundToInt(transform.position.x)){
+                currPosition = transform.position;
+                mLinker.mParallaxManager.ParallaxingForward(false);
+            }
 
             if(facingRight){
                 Flip();
