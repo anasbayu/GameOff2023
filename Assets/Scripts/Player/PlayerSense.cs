@@ -34,6 +34,13 @@ public class PlayerSense : MonoBehaviour
     }
 
     public void Interact(){
-        Debug.Log(interactedObj.name);
+        string triggerName = interactedObj.GetComponent<TriggerInfo>().triggerName;
+
+        if(triggerName == "Ladder"){
+            Debug.Log("aaa");
+            mLinker.mPlayer.transform.position = interactedObj.GetComponent<Ladder>().GetDestinationPos();
+        } 
+
+        Debug.Log(interactedObj.GetComponent<TriggerInfo>().triggerName);
     }
 }

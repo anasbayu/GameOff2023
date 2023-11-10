@@ -5,19 +5,19 @@ using UnityEngine;
 public class PlayerControll : MonoBehaviour
 {
     public Linker mLinker;
-    int speed = 10;
+    public int speed;
     public int jumpPower;
     bool facingRight;           // direction indicator
     public bool isJumping;      // jumping indicator
     public bool onLand;         // Prevent jumping mid air.
     public GameObject indicator;
     public Vector2 currPosition;
+    public Animator mAnimator;
 
     void Start(){
         onLand = true;
         facingRight = true;
         isJumping = false;
-        jumpPower = 23;
         currPosition = transform.position;
     }
 
@@ -26,32 +26,48 @@ public class PlayerControll : MonoBehaviour
         if(Input.GetKey(KeyCode.D)){
             transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-            if(Mathf.RoundToInt(currPosition.x) != Mathf.RoundToInt(transform.position.x)){
+            if(!Mathf.Approximately(currPosition.x, transform.position.x)){
+                Debug.Log(currPosition.x - transform.position.x);
+            // if(Mathf.RoundToInt(currPosition.x) != Mathf.RoundToInt(transform.position.x)){
                 currPosition = transform.position;
                 mLinker.mParallaxManager.ParallaxingForward(true);
             }
             if(!facingRight){
                 Flip();
             }
+
+            // Play the animation.
+            mAnimator.SetBool("IsWalking", true);
         }
+
+        if(Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A)){
+            Debug.Log("uppp");
+            mAnimator.SetBool("IsWalking", false);
+        }
+
 
         // Move left.
         if(Input.GetKey(KeyCode.A)){
             transform.Translate(Vector2.left * speed * Time.deltaTime);
-            if(Mathf.RoundToInt(currPosition.x) != Mathf.RoundToInt(transform.position.x)){
-                currPosition = transform.position;
+            if(!Mathf.Approximately(currPosition.x, transform.position.x)){
+            // if(Mathf.RoundToInt(currPosition.x) != Mathf.RoundToInt(transform.position.x)){
+                currPosition = transform.position;          
                 mLinker.mParallaxManager.ParallaxingForward(false);
             }
 
             if(facingRight){
                 Flip();
             }
+
+            // Play the animation.
+            mAnimator.SetBool("IsWalking", true);
         }
 
         // Jump.
         if(Input.GetKeyDown(KeyCode.Space) && onLand){
             if(!isJumping){
                 isJumping = true;
+                mAnimator.SetBool("IsJumping", true);
             }
         }
 
@@ -96,6 +112,7 @@ public class PlayerControll : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other){
         if(other.gameObject.tag == "Land"){
             onLand = true;
+            mAnimator.SetBool("IsJumping", false);
         }
    }
 
