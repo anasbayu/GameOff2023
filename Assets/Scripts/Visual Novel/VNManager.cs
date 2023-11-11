@@ -89,7 +89,6 @@ public class VNManager : MonoBehaviour
 
         isTextScrolling = false;
         currStoryDisplayedIndex++;
-        Debug.Log("curr index: " + currStoryDisplayedIndex);
     }
 
     void UpdateImage(int index){
@@ -108,10 +107,6 @@ public class VNManager : MonoBehaviour
         rightImages = rightImagesToShow;
 
         textBox.SetActive(true);
-
-        Debug.Log("curr indexa: " + currStoryDisplayedIndex);
-        Debug.Log("story length: " + stories.Length);
-
         StartCoroutine(AnimateText(currStoryDisplayedIndex));
     }
 

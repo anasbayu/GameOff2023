@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour{
     public Linker mLinker;
     public Image mUIPlayerStatus;
     public GameObject mUIKeyIndicator;
+    public GameObject mMenuPaused;
 
     void Start(){
         ChangeUIPlayerStatus(mLinker.mPlayerStatus.GetBodyState());
@@ -22,5 +23,13 @@ public class UIManager : MonoBehaviour{
 
     public void ShowKeyIndicator(bool isShowing){
         mUIKeyIndicator.SetActive(isShowing);
+    }
+
+    public void ShowMenu(){
+        mMenuPaused.SetActive(true);
+    }
+
+    public void HideMenu(){
+        mMenuPaused.SetActive(false);
     }
 }

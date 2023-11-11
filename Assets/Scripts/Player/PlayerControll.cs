@@ -22,7 +22,7 @@ public class PlayerControll : MonoBehaviour
     }
 
     void Update(){
-        if(!mLinker.mVNManager.isShowingLore){
+        if(!mLinker.mVNManager.isShowingLore && !mLinker.mGameManager.isPaused){
             // Move right.
             if(Input.GetKey(KeyCode.D)){
                 transform.Translate(Vector2.right * speed * Time.deltaTime);
@@ -81,9 +81,19 @@ public class PlayerControll : MonoBehaviour
                 mLinker.mPlayerStatus.Transform("environment");
             }
 
-            // Interact action
+            // Interact action.
             if(Input.GetKeyDown(KeyCode.F) && mLinker.mPlayerSense.isInteracting){
                 mLinker.mPlayerSense.Interact();
+            }
+
+        }
+
+        // Pause game.
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            if(mLinker.mGameManager.isPaused){
+                mLinker.mGameManager.ResumeGame();
+            }else{
+                mLinker.mGameManager.PauseGame();
             }
         }
     }
