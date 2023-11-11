@@ -22,68 +22,69 @@ public class PlayerControll : MonoBehaviour
     }
 
     void Update(){
-        // Move right.
-        if(Input.GetKey(KeyCode.D)){
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
+        if(!mLinker.mVNManager.isShowingLore){
+            // Move right.
+            if(Input.GetKey(KeyCode.D)){
+                transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-            if(!Mathf.Approximately(currPosition.x, transform.position.x)){
-                Debug.Log(currPosition.x - transform.position.x);
-            // if(Mathf.RoundToInt(currPosition.x) != Mathf.RoundToInt(transform.position.x)){
-                currPosition = transform.position;
-                mLinker.mParallaxManager.ParallaxingForward(true);
-            }
-            if(!facingRight){
-                Flip();
-            }
+                if(!Mathf.Approximately(currPosition.x, transform.position.x)){
+                    // Debug.Log(currPosition.x - transform.position.x);
+                // if(Mathf.RoundToInt(currPosition.x) != Mathf.RoundToInt(transform.position.x)){
+                    currPosition = transform.position;
+                    mLinker.mParallaxManager.ParallaxingForward(true);
+                }
+                if(!facingRight){
+                    Flip();
+                }
 
-            // Play the animation.
-            mAnimator.SetBool("IsWalking", true);
-        }
-
-        if(Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A)){
-            Debug.Log("uppp");
-            mAnimator.SetBool("IsWalking", false);
-        }
-
-
-        // Move left.
-        if(Input.GetKey(KeyCode.A)){
-            transform.Translate(Vector2.left * speed * Time.deltaTime);
-            if(!Mathf.Approximately(currPosition.x, transform.position.x)){
-            // if(Mathf.RoundToInt(currPosition.x) != Mathf.RoundToInt(transform.position.x)){
-                currPosition = transform.position;          
-                mLinker.mParallaxManager.ParallaxingForward(false);
+                // Play the animation.
+                mAnimator.SetBool("IsWalking", true);
             }
 
-            if(facingRight){
-                Flip();
+            if(Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A)){
+                mAnimator.SetBool("IsWalking", false);
             }
 
-            // Play the animation.
-            mAnimator.SetBool("IsWalking", true);
-        }
 
-        // Jump.
-        if(Input.GetKeyDown(KeyCode.Space) && onLand){
-            if(!isJumping){
-                isJumping = true;
-                mAnimator.SetBool("IsJumping", true);
+            // Move left.
+            if(Input.GetKey(KeyCode.A)){
+                transform.Translate(Vector2.left * speed * Time.deltaTime);
+                if(!Mathf.Approximately(currPosition.x, transform.position.x)){
+                // if(Mathf.RoundToInt(currPosition.x) != Mathf.RoundToInt(transform.position.x)){
+                    currPosition = transform.position;          
+                    mLinker.mParallaxManager.ParallaxingForward(false);
+                }
+
+                if(facingRight){
+                    Flip();
+                }
+
+                // Play the animation.
+                mAnimator.SetBool("IsWalking", true);
             }
-        }
 
-        // Change self age.
-        if(Input.GetKeyDown(KeyCode.Q)){
-            mLinker.mPlayerStatus.Transform("self");
-        }
+            // Jump.
+            if(Input.GetKeyDown(KeyCode.Space) && onLand){
+                if(!isJumping){
+                    isJumping = true;
+                    mAnimator.SetBool("IsJumping", true);
+                }
+            }
 
-        // Change environment age.
-        if(Input.GetKeyDown(KeyCode.E)){
-            mLinker.mPlayerStatus.Transform("environment");
-        }
+            // Change self age.
+            if(Input.GetKeyDown(KeyCode.Q)){
+                mLinker.mPlayerStatus.Transform("self");
+            }
 
-        // Interact action
-        if(Input.GetKeyDown(KeyCode.F) && mLinker.mPlayerSense.isInteracting){
-            mLinker.mPlayerSense.Interact();
+            // Change environment age.
+            if(Input.GetKeyDown(KeyCode.E)){
+                mLinker.mPlayerStatus.Transform("environment");
+            }
+
+            // Interact action
+            if(Input.GetKeyDown(KeyCode.F) && mLinker.mPlayerSense.isInteracting){
+                mLinker.mPlayerSense.Interact();
+            }
         }
     }
 

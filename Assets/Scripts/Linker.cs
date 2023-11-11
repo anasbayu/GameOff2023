@@ -11,4 +11,5 @@ public class Linker : MonoBehaviour{
     public PlayerControll mPlayerControll;
     public UIManager mUIManager;
     public Inventory mInventory;
+    public VNManager mVNManager;
 }

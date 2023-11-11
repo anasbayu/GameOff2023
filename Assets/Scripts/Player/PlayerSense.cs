@@ -37,10 +37,23 @@ public class PlayerSense : MonoBehaviour
         string triggerName = interactedObj.GetComponent<TriggerInfo>().triggerName;
 
         if(triggerName == "Ladder"){
-            Debug.Log("aaa");
+            // StartCoroutine(Climb(interactedObj.GetComponent<Ladder>().GetDestinationPos()));
             mLinker.mPlayer.transform.position = interactedObj.GetComponent<Ladder>().GetDestinationPos();
-        } 
+        }else if(triggerName == "Lore"){
+            interactedObj.GetComponent<Lore>().TellTheLore();
+        }
 
         Debug.Log(interactedObj.GetComponent<TriggerInfo>().triggerName);
+    }
+
+    IEnumerator Climb(Vector2 destination){
+        Vector2 currPlayerPos = mLinker.mPlayer.transform.position;
+
+        // TODO: Broken code. This make the game freeze.
+        while(currPlayerPos != destination){
+            // Vector2.Lerp(mLinker.mPlayer.transform.position, destination, 1f * Time.deltaTime);
+        }
+
+        yield return new WaitForSeconds(1);
     }
 }

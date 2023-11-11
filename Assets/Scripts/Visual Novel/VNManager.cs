@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class VNManager : MonoBehaviour
@@ -11,47 +12,51 @@ public class VNManager : MonoBehaviour
     // public SceneLoader mSceneLoader;
     int currStoryDisplayedIndex = 0;
     bool isTextScrolling = false;
+    public bool isShowingLore;
 
-
-    [Header("Story Config")]
-    [SerializeField] [TextArea] private string[] stories;
-    // [SerializeField] private 
     [SerializeField] private float scrolingSpeed = 0.05f;
-    [SerializeField] private bool[] showLeftImage;  // NOTE: Panjang harus sama dengan story, kalau ga err.
-    [SerializeField] private bool[] showRightImage; // NOTE: Panjang harus sama dengan story, kalau ga err.
-    [SerializeField] private Sprite[] expressionList; // NOTE: Panjang harus sama dengan story, kalau ga err.
 
+    private string[] stories;
+    private Sprite[] leftImages;  // NOTE: Panjang harus sama dengan story, kalau ga err.
+    private Sprite[] rightImages; 
+    Image imgLeftRenderer, imgRightRenderer;
 
-    public SpriteRenderer imgLeftRenderer, imgRightRenderer;
 
     void Start(){
-        StartCoroutine(AnimateText(currStoryDisplayedIndex));
+        isShowingLore = false;
+
+        imgLeftRenderer = imgLeft.GetComponent<Image>();
+        imgRightRenderer = imgRight.GetComponent<Image>();
     }
 
     void Update(){
-        if(Input.GetKey(KeyCode.Space) && !isTextScrolling){
+        if(Input.GetKey(KeyCode.F) && !isTextScrolling && isShowingLore){
             if(currStoryDisplayedIndex < stories.Length){
                 StartCoroutine(AnimateText(currStoryDisplayedIndex));
             }else{
-                // Story habis, ganti scene ke Gameplay.
+                HideVNComponent();
+                // End of the story. Resume gameplay.
                 // mSceneLoader.ChangeScene("Gameplay");
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.S)){
-            txtStory.text = stories[currStoryDisplayedIndex];
-            UpdateImage(currStoryDisplayedIndex);
-            imgLeft.SetActive(showLeftImage[currStoryDisplayedIndex]);
-            imgRight.SetActive(showRightImage[currStoryDisplayedIndex]);
+        // if(Input.GetKeyDown(KeyCode.S)){
+        //     txtStory.text = stories[currStoryDisplayedIndex];
+        //     UpdateImage(currStoryDisplayedIndex);
+        //     imgLeft.SetActive(leftImages[currStoryDisplayedIndex]);
+        //     imgRight.SetActive(rightImages[currStoryDisplayedIndex]);
             
-            isTextScrolling = false;
-            currStoryDisplayedIndex++;
-            StopAllCoroutines();
+        //     isTextScrolling = false;
+        //     currStoryDisplayedIndex++;
+        //     StopAllCoroutines();
 
-            if(currStoryDisplayedIndex >= stories.Length){
-                // mSceneLoader.ChangeScene("Gameplay");
-            }
-        }
+
+        //     // TODO: Why is this not!!!!?
+        //     if(currStoryDisplayedIndex >= stories.Length){
+        //         HideVNComponent();
+        //         // mSceneLoader.ChangeScene("Gameplay");
+        //     }
+        // }
     }
 
     void ShowImage(string position){
@@ -74,8 +79,8 @@ public class VNManager : MonoBehaviour
         isTextScrolling = true;
         UpdateImage(index);
 
-        imgLeft.SetActive(showLeftImage[index]);
-        imgRight.SetActive(showRightImage[index]);
+        imgLeft.SetActive(leftImages[index]);
+        imgRight.SetActive(rightImages[index]);
 
         for(int i = 0; i < stories[index].Length + 1; i++){
             txtStory.text = stories[index].Substring(0, i);
@@ -84,12 +89,39 @@ public class VNManager : MonoBehaviour
 
         isTextScrolling = false;
         currStoryDisplayedIndex++;
+        Debug.Log("curr index: " + currStoryDisplayedIndex);
     }
 
     void UpdateImage(int index){
-        if(expressionList[index] != null){
-            imgLeftRenderer.sprite = expressionList[index];
-            imgRightRenderer.sprite = expressionList[index];
+        if(leftImages[index] != null){
+            imgLeftRenderer.sprite = leftImages[index];
         }
+        if(rightImages[index] != null){
+            imgRightRenderer.sprite = rightImages[index];
+        }
+    }
+
+    public void TellTheLore(string[] loreToTell, Sprite[] leftImagesToShow, Sprite[] rightImagesToShow){
+        isShowingLore = true;
+        stories = loreToTell;
+        leftImages = leftImagesToShow;
+        rightImages = rightImagesToShow;
+
+        textBox.SetActive(true);
+
+        Debug.Log("curr indexa: " + currStoryDisplayedIndex);
+        Debug.Log("story length: " + stories.Length);
+
+        StartCoroutine(AnimateText(currStoryDisplayedIndex));
+    }
+
+    void HideVNComponent(){
+        currStoryDisplayedIndex = 0;
+        isShowingLore = false;
+
+        textBox.SetActive(false);
+        imgLeft.SetActive(false);
+        imgRight.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

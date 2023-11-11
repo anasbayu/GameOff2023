@@ -18,14 +18,14 @@ public class PlayerStatus : MonoBehaviour{
             if(isAdultState){
                 isAdultState = false;
                 mLinker.mUIManager.ChangeUIPlayerStatus(isAdultState);
-                mLinker.mPlayer.transform.localScale /= 2;
+                mLinker.mPlayer.transform.localScale /= 1.3f;
                 mLinker.mPlayerControll.SetJumpPower("Kid");
                 // mAnimator.SetBool("IsAdultState", isAdultState);
                 Debug.Log("into a kid!");
             }else{
                 isAdultState = true;
                 mLinker.mUIManager.ChangeUIPlayerStatus(isAdultState);
-                mLinker.mPlayer.transform.localScale *= 2;
+                mLinker.mPlayer.transform.localScale *= 1.3f;
                 mLinker.mPlayerControll.SetJumpPower("Adult");
                 // mAnimator.SetBool("IsAdultState", isAdultState);
                 Debug.Log("into an adult!");
