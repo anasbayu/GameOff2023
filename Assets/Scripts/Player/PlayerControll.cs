@@ -30,6 +30,7 @@ public class PlayerControll : MonoBehaviour
                 transform.Translate(Vector2.right * speed * Time.deltaTime);
 
                 if(!Mathf.Approximately(currPosition.x, transform.position.x)){
+                    // TODO: FIX PARALLAX BUGS.
                     // Debug.Log(currPosition.x - transform.position.x);
                 // if(Mathf.RoundToInt(currPosition.x) != Mathf.RoundToInt(transform.position.x)){
                     currPosition = transform.position;
@@ -40,11 +41,19 @@ public class PlayerControll : MonoBehaviour
                 }
 
                 // Play the animation.
-                mAnimator.SetBool("IsWalking", true);
+                if(IsCrouching){
+                    mAnimator.SetBool("IsCrawling", true);
+                }else{
+                    mAnimator.SetBool("IsWalking", true);
+                }
             }
 
             if(Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A)){
-                mAnimator.SetBool("IsWalking", false);
+                if(IsCrouching){
+                    mAnimator.SetBool("IsCrawling", false);
+                }else{
+                    mAnimator.SetBool("IsWalking", false);
+                }
             }
 
 
@@ -52,6 +61,7 @@ public class PlayerControll : MonoBehaviour
             if(Input.GetKey(KeyCode.A)){
                 transform.Translate(Vector2.left * speed * Time.deltaTime);
                 if(!Mathf.Approximately(currPosition.x, transform.position.x)){
+                    // TODO: FIX PARALLAX BUGS.
                 // if(Mathf.RoundToInt(currPosition.x) != Mathf.RoundToInt(transform.position.x)){
                     currPosition = transform.position;          
                     mLinker.mParallaxManager.ParallaxingForward(false);
@@ -62,11 +72,14 @@ public class PlayerControll : MonoBehaviour
                 }
 
                 // Play the animation.
-                mAnimator.SetBool("IsWalking", true);
-            }
+                if(IsCrouching){
+                    mAnimator.SetBool("IsCrawling", true);
+                }else{
+                    mAnimator.SetBool("IsWalking", true);
+                }            }
 
             // Jump.
-            if(Input.GetKeyDown(KeyCode.Space) && onLand){
+            if(Input.GetKeyDown(KeyCode.Space) && onLand && !IsCrouching){
                 if(!isJumping){
                     isJumping = true;
                     mAnimator.SetBool("IsJumping", true);
@@ -78,9 +91,11 @@ public class PlayerControll : MonoBehaviour
                 if(IsCrouching){
                     mAnimator.SetBool("IsCrouching", false);
                     speed += 3;
+                    IsCrouching = false;
                 }else{
                     mAnimator.SetBool("IsCrouching", true);
                     speed -= 3;
+                    IsCrouching = true;
                 }
             }
 
