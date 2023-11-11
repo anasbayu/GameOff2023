@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour{
     public GameObject mMenuPaused;
 
     void Start(){
-        ChangeUIPlayerStatus(mLinker.mPlayerStatus.GetBodyState());
+        ChangeUIPlayerStatus(mLinker.mPlayerStatus.isAdultState);
     }
 
     public void ChangeUIPlayerStatus(bool isAdultState){

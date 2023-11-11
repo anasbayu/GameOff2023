@@ -9,6 +9,7 @@ public class PlayerControll : MonoBehaviour
     public int jumpPower;
     bool facingRight;           // direction indicator
     public bool isJumping;      // jumping indicator
+    bool IsCrouching;
     public bool onLand;         // Prevent jumping mid air.
     public GameObject indicator;
     public Vector2 currPosition;
@@ -18,6 +19,7 @@ public class PlayerControll : MonoBehaviour
         onLand = true;
         facingRight = true;
         isJumping = false;
+        IsCrouching = false;
         currPosition = transform.position;
     }
 
@@ -68,6 +70,17 @@ public class PlayerControll : MonoBehaviour
                 if(!isJumping){
                     isJumping = true;
                     mAnimator.SetBool("IsJumping", true);
+                }
+            }
+
+            // Crouch, available when you are a child.
+            if(Input.GetKeyDown(KeyCode.LeftControl) && onLand && !mLinker.mPlayerStatus.isAdultState){
+                if(IsCrouching){
+                    mAnimator.SetBool("IsCrouching", false);
+                    speed += 3;
+                }else{
+                    mAnimator.SetBool("IsCrouching", true);
+                    speed -= 3;
                 }
             }
 

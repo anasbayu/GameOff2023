@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour{
    public Linker mLinker;
-   bool isAdultState;
+   public bool isAdultState;
    Animator mAnimator;
 
    void Start(){
@@ -35,7 +35,7 @@ public class PlayerStatus : MonoBehaviour{
         }
    }
 
-   public bool GetBodyState(){
-        return isAdultState;
-   }
+//    public bool GetBodyState(){
+//         return isAdultState;
+//    }
 }
