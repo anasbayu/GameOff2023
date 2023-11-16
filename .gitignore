@@ -74,3 +74,4 @@ crashlytics-build.properties
 
 # Asset Store.
 Assets/AssetStore/
+Packages/com.singularitygroup.hotreload/

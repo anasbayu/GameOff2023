@@ -13,29 +13,21 @@ public class PlayerStatus : MonoBehaviour{
         mAnimator.SetBool("IsAdultState", isAdultState);
    }
 
-   public void Transform(string mode){
-        if(mode == "self"){
-            if(isAdultState){
-                isAdultState = false;
-                mLinker.mUIManager.ChangeUIPlayerStatus(isAdultState);
-                mLinker.mPlayer.transform.localScale /= 1.3f;
-                mLinker.mPlayerControll.SetJumpPower("Kid");
-                // mAnimator.SetBool("IsAdultState", isAdultState);
-                Debug.Log("into a kid!");
-            }else{
-                isAdultState = true;
-                mLinker.mUIManager.ChangeUIPlayerStatus(isAdultState);
-                mLinker.mPlayer.transform.localScale *= 1.3f;
-                mLinker.mPlayerControll.SetJumpPower("Adult");
-                // mAnimator.SetBool("IsAdultState", isAdultState);
-                Debug.Log("into an adult!");
-            }
+   public void Transform(){
+        if(isAdultState){
+            isAdultState = false;
+            mLinker.mUIManager.ChangeUIPlayerStatus(isAdultState);
+            mLinker.mPlayer.transform.localScale /= 1.3f;
+            mLinker.mPlayerControll.SetJumpPower("Kid");
+            // mAnimator.SetBool("IsAdultState", isAdultState);
+            Debug.Log("into a kid!");
         }else{
-            Debug.Log("transform environment!");
+            isAdultState = true;
+            mLinker.mUIManager.ChangeUIPlayerStatus(isAdultState);
+            mLinker.mPlayer.transform.localScale *= 1.3f;
+            mLinker.mPlayerControll.SetJumpPower("Adult");
+            // mAnimator.SetBool("IsAdultState", isAdultState);
+            Debug.Log("into an adult!");
         }
    }
-
-//    public bool GetBodyState(){
-//         return isAdultState;
-//    }
 }
