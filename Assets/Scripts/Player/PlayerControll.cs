@@ -10,9 +10,10 @@ public class PlayerControll : MonoBehaviour
     bool facingRight;           // direction indicator
     public bool isJumping;      // jumping indicator
     bool IsCrouching;
+    bool isMoving;
     public bool onLand;         // Prevent jumping mid air.
     public GameObject indicator;
-    public Vector2 currPosition;
+    public Vector2 lastPosition;
     public Animator mAnimator;
 
     void Start(){
@@ -20,7 +21,8 @@ public class PlayerControll : MonoBehaviour
         facingRight = true;
         isJumping = false;
         IsCrouching = false;
-        currPosition = transform.position;
+        isMoving = false;
+        lastPosition = transform.position;
     }
 
     void Update(){
@@ -29,12 +31,13 @@ public class PlayerControll : MonoBehaviour
             if(Input.GetKey(KeyCode.D)){
                 transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-                if(!Mathf.Approximately(currPosition.x, transform.position.x)){
-                    // TODO: FIX PARALLAX BUGS.
-                    // Debug.Log(currPosition.x - transform.position.x);
-                // if(Mathf.RoundToInt(currPosition.x) != Mathf.RoundToInt(transform.position.x)){
-                    currPosition = transform.position;
+                float tmp = lastPosition.x - transform.position.x;
+
+                // Check if Player moving/not.
+                if(tmp < -0f){
+                    lastPosition = transform.position;
                     mLinker.mParallaxManager.ParallaxingForward(true);
+                    transform.hasChanged = false;
                 }
                 if(!facingRight){
                     Flip();
@@ -60,13 +63,16 @@ public class PlayerControll : MonoBehaviour
             // Move left.
             if(Input.GetKey(KeyCode.A)){
                 transform.Translate(Vector2.left * speed * Time.deltaTime);
-                if(!Mathf.Approximately(currPosition.x, transform.position.x)){
-                    // TODO: FIX PARALLAX BUGS.
-                // if(Mathf.RoundToInt(currPosition.x) != Mathf.RoundToInt(transform.position.x)){
-                    currPosition = transform.position;          
-                    mLinker.mParallaxManager.ParallaxingForward(false);
-                }
+                
+                float tmp = lastPosition.x - transform.position.x;
 
+                // Check if Player moving/not.
+                if(tmp > 0.01f){
+                    lastPosition = transform.position;
+                    mLinker.mParallaxManager.ParallaxingForward(false);
+                    transform.hasChanged = false;
+                }
+                
                 if(facingRight){
                     Flip();
                 }
