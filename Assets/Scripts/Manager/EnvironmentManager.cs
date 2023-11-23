@@ -17,6 +17,9 @@ public class EnvironmentManager : MonoBehaviour{
     public void SwitchEnvironmentState(){
         isPrimeState = !isPrimeState;
 
+        // Play VFX.
+        
+
         foreach(ObjectMeta obj in mSwitchableObjs){
             obj.SwapSprite(isPrimeState);
 

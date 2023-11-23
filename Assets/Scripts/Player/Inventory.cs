@@ -15,4 +15,8 @@ public class Inventory : MonoBehaviour
         isKeyAcquired = true;
         mLinker.mUIManager.ShowKeyIndicator(isKeyAcquired);
     }
+
+    public bool IsKeyAcquired(){
+        return isKeyAcquired;
+    }
 }

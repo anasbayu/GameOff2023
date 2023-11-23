@@ -14,4 +14,5 @@ public class Linker : MonoBehaviour{
     public VNManager mVNManager;
     public GameManager mGameManager;
     public EnvironmentManager mEnvManager;
+    public CameraFollow mCamera;
 }

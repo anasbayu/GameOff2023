@@ -41,6 +41,10 @@ public class PlayerSense : MonoBehaviour
             mLinker.mPlayer.transform.position = interactedObj.GetComponent<Ladder>().GetDestinationPos();
         }else if(triggerName == "Lore"){
             interactedObj.GetComponent<Lore>().TellTheLore();
+        }else if(triggerName == "Door"){
+            if(mLinker.mInventory.IsKeyAcquired()){
+                
+            }
         }
 
         Debug.Log(interactedObj.GetComponent<TriggerInfo>().triggerName);
