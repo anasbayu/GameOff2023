@@ -5,15 +5,24 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour{
     public Linker mLinker;
     public float yOffset = -1;
+    public float xOffset;
     public float followSpeed;
     public bool isActive;
     public GameObject boundaries;
 
     void Update(){
         if(isActive){
-            // TODO: make camera move like hollow knight.
+            string direction = mLinker.mPlayerControll.GetDirection();
+            if(direction == "right"){
+                xOffset = 3;
+            }else if(direction == "left"){
+                xOffset = -3;
+            }else{
+                xOffset = 0;
+            }
+
             Transform playerTransform = mLinker.mPlayer.transform;
-            Vector3 newPos = new Vector3(playerTransform.position.x, playerTransform.position.y + yOffset, -10f);
+            Vector3 newPos = new Vector3(playerTransform.position.x + xOffset, playerTransform.position.y + yOffset, -10f);
             transform.position = Vector3.Slerp(transform.position, newPos, followSpeed * Time.deltaTime);
         }
     }

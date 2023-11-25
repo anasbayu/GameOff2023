@@ -47,7 +47,7 @@ public class PlayerSense : MonoBehaviour
             }
         }
 
-        Debug.Log(interactedObj.GetComponent<TriggerInfo>().triggerName);
+        // Debug.Log(interactedObj.GetComponent<TriggerInfo>().triggerName);
     }
 
     IEnumerator Climb(Vector2 destination){

@@ -29,6 +29,7 @@ public class PlayerControll : MonoBehaviour
         if(!mLinker.mVNManager.isShowingLore && !mLinker.mGameManager.isPaused){
             // Move right.
             if(Input.GetKey(KeyCode.D)){
+                isMoving = true;
                 transform.Translate(Vector2.right * speed * Time.deltaTime);
 
                 float tmp = lastPosition.x - transform.position.x;
@@ -57,11 +58,13 @@ public class PlayerControll : MonoBehaviour
                 }else{
                     mAnimator.SetBool("IsWalking", false);
                 }
+                isMoving = false;
             }
 
 
             // Move left.
             if(Input.GetKey(KeyCode.A)){
+                isMoving = true;
                 transform.Translate(Vector2.left * speed * Time.deltaTime);
                 
                 float tmp = lastPosition.x - transform.position.x;
@@ -167,5 +170,19 @@ public class PlayerControll : MonoBehaviour
         }else{
             jumpPower = 30;
         }
+   }
+
+   public string GetDirection(){
+        string returnVal = "idle";
+
+        if(isMoving){
+            if(facingRight){
+                returnVal = "right";
+            }else{
+                returnVal = "left";
+            }
+        }
+
+        return returnVal;
    }
 }

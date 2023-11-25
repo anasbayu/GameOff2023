@@ -16,9 +16,9 @@ public class ObjectMeta : MonoBehaviour
 
     public void SwapSprite(bool isPrime){
         if(isPrime){
-            mSpriteRenderer.sprite = mPrimeSprite;
-        }else{
             mSpriteRenderer.sprite = mRuinedSprite;
+        }else{
+            mSpriteRenderer.sprite = mPrimeSprite;
         }
     }
 

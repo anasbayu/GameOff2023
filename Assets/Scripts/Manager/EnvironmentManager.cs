@@ -5,13 +5,21 @@ using UnityEngine;
 public class EnvironmentManager : MonoBehaviour{
     public Linker mLinker;
     public bool isPrimeState;       // true = in the past, false = present time
+    // public UnityEngine.Rendering.Universal.Light2D mGlobalLight;
+    public List<UnityEngine.Rendering.Universal.Light2D> mLights;
 
     public List<ObjectMeta> mSwitchableObjs = new List<ObjectMeta>();       // List of all game object that can be time switched.
    
     void Start(){
-        isPrimeState = true;        // default true because the default is present time, and we change the value in SwitchEnvironmetState()
+        isPrimeState = false;        // default false because the default is present time, and we change the value in SwitchEnvironmetState()
 
-        // SwitchEnvironmentState();
+        foreach(ObjectMeta obj in mSwitchableObjs){
+            if(isPrimeState){
+                obj.gameObject.SetActive(!obj.hideOnRuinedState);
+            }else{
+                obj.gameObject.SetActive(!obj.hideOnPrimeState);
+            }
+        }
     }
 
     public void SwitchEnvironmentState(){
@@ -24,13 +32,29 @@ public class EnvironmentManager : MonoBehaviour{
             obj.SwapSprite(isPrimeState);
 
             if(isPrimeState){
-                obj.gameObject.SetActive(!obj.hideOnPrimeState);
-            }else{
                 obj.gameObject.SetActive(!obj.hideOnRuinedState);
+            }else{
+                obj.gameObject.SetActive(!obj.hideOnPrimeState);
             }
         }
 
         isPrimeState = !isPrimeState;
+
+        // Change glogal light color.
+        string ruinedColor = "#C4BFFF";
+        string primeColor = "#FFF6BF";
+        string colorHex;
+        if(isPrimeState){
+            colorHex = primeColor;
+        }else{
+            colorHex = ruinedColor;
+        }
+
+        ColorUtility.TryParseHtmlString(colorHex , out Color tmpColor);
+
+        foreach(UnityEngine.Rendering.Universal.Light2D light in mLights){
+            light.color = tmpColor;
+        }
         mLinker.mEffectScreenFade.FadeToNormal();
     }
 }

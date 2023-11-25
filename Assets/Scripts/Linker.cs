@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Linker : MonoBehaviour{
     public GameObject mPlayer;
     public GameObject mStatusBalloon;
@@ -16,4 +17,5 @@ public class Linker : MonoBehaviour{
     public EnvironmentManager mEnvManager;
     public CameraFollow mCamera;
     public ScreenFade mEffectScreenFade;
+    public UnityEngine.Rendering.Universal.Light2D mGlobalLight;
 }
