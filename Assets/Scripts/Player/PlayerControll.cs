@@ -112,8 +112,6 @@ public class PlayerControll : MonoBehaviour
 
             // Change environment age.
             if(Input.GetKeyDown(KeyCode.E)){
-                // mLinker.mPlayerStatus.Transform("environment");
-                Debug.Log("E");
                 mLinker.mEnvManager.SwitchEnvironmentState();
             }
 

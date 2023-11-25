@@ -11,15 +11,15 @@ public class EnvironmentManager : MonoBehaviour{
     void Start(){
         isPrimeState = true;        // default true because the default is present time, and we change the value in SwitchEnvironmetState()
 
-        SwitchEnvironmentState();
+        // SwitchEnvironmentState();
     }
 
     public void SwitchEnvironmentState(){
-        isPrimeState = !isPrimeState;
-
         // Play VFX.
-        
+        mLinker.mEffectScreenFade.FadeToBlack();
+    }
 
+    public void Switch(){
         foreach(ObjectMeta obj in mSwitchableObjs){
             obj.SwapSprite(isPrimeState);
 
@@ -29,5 +29,8 @@ public class EnvironmentManager : MonoBehaviour{
                 obj.gameObject.SetActive(!obj.hideOnRuinedState);
             }
         }
+
+        isPrimeState = !isPrimeState;
+        mLinker.mEffectScreenFade.FadeToNormal();
     }
 }

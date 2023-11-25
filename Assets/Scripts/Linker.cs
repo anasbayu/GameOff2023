@@ -15,4 +15,5 @@ public class Linker : MonoBehaviour{
     public GameManager mGameManager;
     public EnvironmentManager mEnvManager;
     public CameraFollow mCamera;
+    public ScreenFade mEffectScreenFade;
 }

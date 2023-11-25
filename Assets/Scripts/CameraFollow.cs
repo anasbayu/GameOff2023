@@ -7,6 +7,7 @@ public class CameraFollow : MonoBehaviour{
     public float yOffset = -1;
     public float followSpeed;
     public bool isActive;
+    public GameObject boundaries;
 
     void Update(){
         if(isActive){
