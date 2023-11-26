@@ -54,6 +54,13 @@ public class EnvironmentManager : MonoBehaviour{
 
         foreach(UnityEngine.Rendering.Universal.Light2D light in mLights){
             light.color = tmpColor;
+
+            // Hide light on sieged walls on prime state.
+            if(light.gameObject.name == "Light Sieged" && isPrimeState){
+                light.SetActive(false);
+            }else{
+                light.SetActive(true);
+            }
         }
         mLinker.mEffectScreenFade.FadeToNormal();
     }
