@@ -13,6 +13,11 @@ public class PlayerSense : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "Lore"){
+            interactedObj = other.gameObject;
+            interactedObj.GetComponent<Lore>().TellTheLore();
+        }
+
         if(other.gameObject.tag == "Trigger"){
             mLinker.mStatusBalloon.SetActive(true);
             isInteracting = true;
@@ -31,6 +36,10 @@ public class PlayerSense : MonoBehaviour
             isInteracting = false;
             interactedObj = null;
         }
+
+        if(other.gameObject.tag == "Lore"){
+            Destroy(other.gameObject);
+        }
     }
 
     public void Interact(){
@@ -43,11 +52,9 @@ public class PlayerSense : MonoBehaviour
             interactedObj.GetComponent<Lore>().TellTheLore();
         }else if(triggerName == "Door"){
             if(mLinker.mInventory.IsKeyAcquired()){
-                
+                mLinker.mUIManager.ShowLevelComplete();
             }
         }
-
-        // Debug.Log(interactedObj.GetComponent<TriggerInfo>().triggerName);
     }
 
     IEnumerator Climb(Vector2 destination){

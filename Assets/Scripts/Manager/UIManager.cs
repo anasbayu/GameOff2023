@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour{
     public Linker mLinker;
     public Image mUIPlayerStatus;
     public GameObject mUIKeyIndicator;
-    public GameObject mMenuPaused;
+    public GameObject mMenuPaused, mLevelComplete;
 
     void Start(){
         ChangeUIPlayerStatus(mLinker.mPlayerStatus.isAdultState);
@@ -31,5 +31,13 @@ public class UIManager : MonoBehaviour{
 
     public void HideMenu(){
         mMenuPaused.SetActive(false);
+    }
+
+    public void ShowLevelComplete(){
+        mLevelComplete.SetActive(true);
+    }
+
+    public void HideLevelComplete(){
+        mLevelComplete.SetActive(false);
     }
 }

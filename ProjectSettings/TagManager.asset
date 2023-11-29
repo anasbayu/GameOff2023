@@ -7,6 +7,7 @@ TagManager:
   - Land
   - Trigger
   - Key
+  - Lore
   layers:
   - Default
   - TransparentFX

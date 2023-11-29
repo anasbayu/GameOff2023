@@ -57,9 +57,9 @@ public class EnvironmentManager : MonoBehaviour{
 
             // Hide light on sieged walls on prime state.
             if(light.gameObject.name == "Light Sieged" && isPrimeState){
-                light.SetActive(false);
+                light.gameObject.SetActive(false);
             }else{
-                light.SetActive(true);
+                light.gameObject.SetActive(true);
             }
         }
         mLinker.mEffectScreenFade.FadeToNormal();
