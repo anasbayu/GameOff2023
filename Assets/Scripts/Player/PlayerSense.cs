@@ -52,6 +52,7 @@ public class PlayerSense : MonoBehaviour
             interactedObj.GetComponent<Lore>().TellTheLore();
         }else if(triggerName == "Door"){
             if(mLinker.mInventory.IsKeyAcquired()){
+                interactedObj.GetComponent<SpriteRenderer>().sprite = mLinker.mSwapSprite.doorOpen;
                 mLinker.mUIManager.ShowLevelComplete();
             }
         }

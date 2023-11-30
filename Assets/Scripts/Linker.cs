@@ -18,4 +18,5 @@ public class Linker : MonoBehaviour{
     public CameraFollow mCamera;
     public ScreenFade mEffectScreenFade;
     public UnityEngine.Rendering.Universal.Light2D mGlobalLight;
+    public SwapableSprite mSwapSprite;
 }
