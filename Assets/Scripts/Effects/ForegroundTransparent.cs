@@ -6,13 +6,13 @@ public class ForegroundTransparent : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D other){
         if(other.tag == "Player"){
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.85f);
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.7f);
         }
     }
 
     void OnTriggerExit2D(Collider2D other) {
         if(other.tag == "Player"){
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1.0f);
         }
     }
     
