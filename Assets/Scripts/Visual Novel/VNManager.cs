@@ -10,7 +10,6 @@ public class VNManager : MonoBehaviour
     public GameObject imgLeft, imgRight;
     public GameObject textBox;
     public TMP_Text txtStory;
-    // public SceneLoader mSceneLoader;
     int currStoryDisplayedIndex = 0;
     bool isTextScrolling = false;
     public bool isShowingLore;
@@ -37,7 +36,6 @@ public class VNManager : MonoBehaviour
             }else{
                 HideVNComponent();
                 // End of the story. Resume gameplay.
-                // mSceneLoader.ChangeScene("Gameplay");
             }
         }
 
