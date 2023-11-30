@@ -6,6 +6,7 @@ using TMPro;
 
 public class VNManager : MonoBehaviour
 {
+    public Linker mLinker;
     public GameObject imgLeft, imgRight;
     public GameObject textBox;
     public TMP_Text txtStory;
@@ -105,6 +106,11 @@ public class VNManager : MonoBehaviour
         stories = loreToTell;
         leftImages = leftImagesToShow;
         rightImages = rightImagesToShow;
+
+        // Change player animation to idle.
+        Animator mAnimator = mLinker.mPlayer.GetComponent<Animator>();
+        mAnimator.SetBool("IsWalking", false);
+        mAnimator.SetBool("IsJumping", false);
 
         textBox.SetActive(true);
         StartCoroutine(AnimateText(currStoryDisplayedIndex));

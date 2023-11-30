@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControll : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerControll : MonoBehaviour
     public GameObject indicator;
     public Vector2 lastPosition;
     public Animator mAnimator;
+    Scene scene;
 
     void Start(){
         onLand = true;
@@ -23,6 +25,7 @@ public class PlayerControll : MonoBehaviour
         IsCrouching = false;
         isMoving = false;
         lastPosition = transform.position;
+        scene = SceneManager.GetActiveScene();
     }
 
     void Update(){
@@ -96,25 +99,25 @@ public class PlayerControll : MonoBehaviour
             }
 
             // Crouch, available when you are a child.
-            if(Input.GetKeyDown(KeyCode.LeftControl) && onLand && !mLinker.mPlayerStatus.isAdultState){
-                if(IsCrouching){
-                    mAnimator.SetBool("IsCrouching", false);
-                    speed += 3;
-                    IsCrouching = false;
-                }else{
-                    mAnimator.SetBool("IsCrouching", true);
-                    speed -= 3;
-                    IsCrouching = true;
-                }
-            }
+            // if(Input.GetKeyDown(KeyCode.LeftControl) && onLand && !mLinker.mPlayerStatus.isAdultState){
+            //     if(IsCrouching){
+            //         mAnimator.SetBool("IsCrouching", false);
+            //         speed += 3;
+            //         IsCrouching = false;
+            //     }else{
+            //         mAnimator.SetBool("IsCrouching", true);
+            //         speed -= 3;
+            //         IsCrouching = true;
+            //     }
+            // }
 
             // Change self age.
-            if(Input.GetKeyDown(KeyCode.Q)){
-                mLinker.mPlayerStatus.Transform();
-            }
+            // if(Input.GetKeyDown(KeyCode.Q)){
+            //     mLinker.mPlayerStatus.Transform();
+            // }
 
             // Change environment age.
-            if(Input.GetKeyDown(KeyCode.E)){
+            if(Input.GetKeyDown(KeyCode.E) && scene.name != "Level 1"){
                 mLinker.mEnvManager.SwitchEnvironmentState();
             }
 
