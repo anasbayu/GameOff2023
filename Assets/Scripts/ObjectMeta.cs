@@ -8,16 +8,17 @@ public class ObjectMeta : MonoBehaviour
     
     public bool hideOnRuinedState;
     public bool hideOnPrimeState;
-    SpriteRenderer mSpriteRenderer;
+    public SpriteRenderer mSpriteRenderer;
 
-    void Start(){
+    void Awake(){
         mSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        // if(hideOnRuinedState){
-        //     gameObject.SetActive(false);
-        // }
     }
 
     public void SwapSprite(bool isPrime){
+        if(mSpriteRenderer == null){
+            mSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        }
+
         if(isPrime){
             mSpriteRenderer.sprite = mRuinedSprite;
         }else{

@@ -9,7 +9,6 @@ public class ScreenFade : MonoBehaviour
     public Animator mAnimator;
 
     public void FadeToBlack(){
-        Debug.Log("fadee");
         mAnimator.SetBool("IsFading", true);
     }
 

@@ -15,9 +15,17 @@ public class EnvironmentManager : MonoBehaviour{
 
         foreach(ObjectMeta obj in mSwitchableObjs){
             if(isPrimeState){
-                obj.gameObject.SetActive(!obj.hideOnRuinedState);
+                if(obj.hideOnPrimeState){
+                    obj.gameObject.SetActive(false);
+                }else{
+                    obj.gameObject.SetActive(true);
+                }
             }else{
-                obj.gameObject.SetActive(!obj.hideOnPrimeState);
+                if(obj.hideOnRuinedState){
+                    obj.gameObject.SetActive(false);
+                }else{
+                    obj.gameObject.SetActive(true);
+                }
             }
         }
     }
