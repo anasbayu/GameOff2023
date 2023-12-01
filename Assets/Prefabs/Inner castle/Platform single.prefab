@@ -144,8 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d2e95208955b4a448d34c05ed8e01ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mPrimeSprite: {fileID: 21300000, guid: 046f08ac60720464c8f0fcc0afea2f31, type: 3}
-  mRuinedSprite: {fileID: 21300000, guid: 0fb0ff91b16cb5d4da9ad619d5ba75f5, type: 3}
+  mPrimeSprite: {fileID: 21300000, guid: 9a7e1bcaad2e7ce48beb62c1b4c24139, type: 3}
+  mRuinedSprite: {fileID: 21300000, guid: 15932696948d8034cb97f2e3f2586ba7, type: 3}
   hideOnRuinedState: 0
   hideOnPrimeState: 0
 --- !u!114 &7023988779634456877
