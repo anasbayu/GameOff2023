@@ -27,6 +27,7 @@ public class PlayerSense : MonoBehaviour
         if(other.gameObject.tag == "Key"){
             mLinker.mSFX.PlaySFX("Pickup");
             mLinker.mInventory.AcquireKey();
+            mLinker.mEnvManager.RemoveFromEnvList("Key");
             Destroy(other.gameObject);
         }
     }

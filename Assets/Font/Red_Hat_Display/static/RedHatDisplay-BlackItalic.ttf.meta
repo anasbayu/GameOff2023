@@ -1,0 +1,34 @@
+fileFormatVersion: 2
+guid: bc82651acbd600a4cba8a17838ca0ade
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Red Hat Display
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 13b69c11b2ff2df4384ac802435d7ca1, type: 3}
+  - {fileID: 12800000, guid: 1b21dfb9411d35246a88a0ef2bef57b9, type: 3}
+  - {fileID: 12800000, guid: 0269c0fe6684e664b8340dd880d53ec9, type: 3}
+  - {fileID: 12800000, guid: 54cdffab080db2a47affa8895ccb28b4, type: 3}
+  - {fileID: 12800000, guid: 82dcec19d2a14004c8be7dbefc1f96fb, type: 3}
+  - {fileID: 12800000, guid: e1536deaa62c10e4db3cb12f74395e27, type: 3}
+  - {fileID: 12800000, guid: d364380b2ccf51d49b0f25d6126e9158, type: 3}
+  - {fileID: 12800000, guid: e9f75a7ae86a3c14d8e5a896c69489f0, type: 3}
+  - {fileID: 12800000, guid: 97ee774356a193b4592a71a50d4b2daa, type: 3}
+  - {fileID: 12800000, guid: 76d1fd571d4a5a4409aebd15652fd160, type: 3}
+  - {fileID: 12800000, guid: 064d5091e39444b4aa748ed69c849348, type: 3}
+  - {fileID: 12800000, guid: 9c04f4b0b0dc45f4fa2f873332ad61b9, type: 3}
+  - {fileID: 12800000, guid: 657caa0dce89e0647b70426dc2cb9eed, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

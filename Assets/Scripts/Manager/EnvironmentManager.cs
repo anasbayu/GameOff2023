@@ -30,6 +30,15 @@ public class EnvironmentManager : MonoBehaviour{
         }
     }
 
+    public void RemoveFromEnvList(string name){
+        foreach(ObjectMeta obj in mSwitchableObjs){
+            if(obj.gameObject.name == name){
+                mSwitchableObjs.Remove(obj);
+                return;
+            }
+        }
+    }
+
     public void SwitchEnvironmentState(){
         // Play VFX.
         mLinker.mEffectScreenFade.FadeToBlack();
