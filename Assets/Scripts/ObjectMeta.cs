@@ -12,6 +12,9 @@ public class ObjectMeta : MonoBehaviour
 
     void Start(){
         mSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        // if(hideOnRuinedState){
+        //     gameObject.SetActive(false);
+        // }
     }
 
     public void SwapSprite(bool isPrime){

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnvironmentManager : MonoBehaviour{
     public Linker mLinker;
-    public bool isPrimeState;       // true = in the past, false = present time
+    public bool isPrimeState = false;       // true = in the past, false = present time
     // public UnityEngine.Rendering.Universal.Light2D mGlobalLight;
     public List<UnityEngine.Rendering.Universal.Light2D> mLights;
 
