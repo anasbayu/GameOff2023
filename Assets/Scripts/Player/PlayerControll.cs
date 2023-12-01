@@ -53,6 +53,9 @@ public class PlayerControll : MonoBehaviour
                 }else{
                     mAnimator.SetBool("IsWalking", true);
                 }
+
+                // Play SFX.
+                // mLinker.mSFX.PlaySFX("Walk");
             }
 
             if(Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A)){
@@ -88,7 +91,11 @@ public class PlayerControll : MonoBehaviour
                     mAnimator.SetBool("IsCrawling", true);
                 }else{
                     mAnimator.SetBool("IsWalking", true);
-                }            }
+                }            
+
+                // Play SFX.
+                // mLinker.mSFX.PlaySFX("Walk");
+            }
 
             // Jump.
             if(Input.GetKeyDown(KeyCode.Space) && onLand && !IsCrouching){
@@ -143,6 +150,7 @@ public class PlayerControll : MonoBehaviour
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             onLand = false;
             isJumping = false;
+            mLinker.mSFX.PlaySFX("Jump");
         }
     }
 

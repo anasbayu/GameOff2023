@@ -25,6 +25,7 @@ public class PlayerSense : MonoBehaviour
         }
 
         if(other.gameObject.tag == "Key"){
+            mLinker.mSFX.PlaySFX("Pickup");
             mLinker.mInventory.AcquireKey();
             Destroy(other.gameObject);
         }
@@ -52,6 +53,7 @@ public class PlayerSense : MonoBehaviour
             interactedObj.GetComponent<Lore>().TellTheLore();
         }else if(triggerName == "Door"){
             if(mLinker.mInventory.IsKeyAcquired()){
+                mLinker.mSFX.PlaySFX("Door Unlock");
                 interactedObj.GetComponent<SpriteRenderer>().sprite = mLinker.mSwapSprite.doorOpen;
                 mLinker.mUIManager.ShowLevelComplete();
             }
